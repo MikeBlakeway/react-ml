@@ -1,0 +1,22 @@
+{
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": true,
+        "source.fixAll.eslint": true,
+    },
+    "typescript.tsdk": "node_modules\\typescript\\lib",
+    "files.autoSave": "off",
+    "search.exclude": {
+        "**/node_modules": true,
+        "**/.vscode": true,
+        "**/build": true,
+        "**/dist": true,
+        "**/coverage": true
+    },
+    "git.autofetch": true,
+    "typescript.implementationsCodeLens.enabled": true,
+    "editor.trimAutoWhitespace": true,
+    "files.encoding": "utf8",
+    "files.trimFinalNewlines": true,
+    "files.trimTrailingWhitespace": true,
+}

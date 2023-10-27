@@ -1,0 +1,78 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true,
+        "jest": true,
+        "node": true
+    },
+    "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:react/recommended",
+        "plugin:react-hooks/recommended"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": "latest",
+        "sourceType": "module",
+        "project": "./tsconfig.json"
+    },
+    "plugins": [
+        "@typescript-eslint",
+        "react",
+        "import",
+        "prettier"
+    ],
+    "rules": {
+        "quotes": [
+            "error",
+            "single"
+        ],
+        "semi": [
+            "error",
+            "never"
+        ],
+        "react/react-in-jsx-scope": "off",
+        "spaced-comment": "warn",
+        "no-duplicate-imports": "error",
+        "no-var": "error",
+        "prefer-const": "error",
+        "no-unused-vars": "off",
+        "@typescript-eslint/no-unused-vars": [
+            "warn",
+            {
+                "vars": "all",
+                "args": "after-used",
+                "ignoreRestSiblings": false,
+                "varsIgnorePattern": "^_",
+                "argsIgnorePattern": "^_"
+            }
+        ],
+        "react/prop-types": "off",
+        "@typescript-eslint/ban-types": "warn",
+        "@typescript-eslint/explicit-function-return-type": "off",
+        "import/order": [
+            "warn",
+            {
+                "groups": [
+                    [
+                        "builtin",
+                        "external"
+                    ],
+                    [
+                        "index",
+                        "sibling",
+                        "parent",
+                        "internal"
+                    ],
+                    "object",
+                    "type"
+                ],
+                "newlines-between": "always"
+            }
+        ]
+    }
+}
