@@ -1,21 +1,37 @@
+import { Grid } from '@mui/material'
+
 import { useFreeDraw } from '../hooks/useFreeDraw'
 
 export const SketchPad = ({ width = 400, height = 400 }) => {
-  const { canvasRef, startDrawing, stopDrawing, draw } = useFreeDraw({
+  const { canvasRef, startDrawing, stopDrawing, draw, undo } = useFreeDraw({
     width,
     height,
   })
 
   return (
-    <canvas
-      ref={canvasRef}
-      width={width}
-      height={height}
-      style={styles}
-      onMouseDown={startDrawing}
-      onMouseUp={stopDrawing}
-      onMouseMove={draw}
-    />
+    <Grid
+      item
+      flex={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+      sx={{
+        width: '400px',
+        height: '400px',
+      }}
+    >
+      <canvas
+        ref={canvasRef}
+        width={width}
+        height={height}
+        style={styles}
+        onMouseDown={startDrawing}
+        onMouseUp={stopDrawing}
+        onMouseMove={draw}
+      />
+      <button onClick={undo}>Undo</button>
+    </Grid>
   )
 }
 

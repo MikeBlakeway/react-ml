@@ -14,20 +14,7 @@ export const App: React.FC = () => (
       height: '100vh',
     }}
   >
-    <Grid
-      item
-      flex={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
-      sx={{
-        width: '400px',
-        height: '400px',
-      }}
-    >
-      <SketchPad />
-    </Grid>
+    <SketchPad />
   </Grid>
 )
 

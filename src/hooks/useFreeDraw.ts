@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 
-import { UseFreeDrawHook } from '../types/CanvasTypes'
+import { Paths, UseFreeDrawHook, Vector } from '../types/CanvasTypes'
 
 export const useFreeDraw: UseFreeDrawHook = (dimensions) => {
   const { width, height } = dimensions
@@ -8,7 +8,9 @@ export const useFreeDraw: UseFreeDrawHook = (dimensions) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null)
   const contextRef = useRef<CanvasRenderingContext2D | null>(null)
   const [isDrawing, setIsDrawing] = useState(false)
+  const [paths, setPaths] = useState<Paths>([])
 
+  console.log(paths)
   useEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) return
@@ -25,7 +27,7 @@ export const useFreeDraw: UseFreeDrawHook = (dimensions) => {
     context.lineCap = 'round'
     context.lineJoin = 'round'
     context.strokeStyle = 'black'
-    context.lineWidth = 4
+    context.lineWidth = 3
 
     contextRef.current = context
   }, [height, width])
@@ -49,6 +51,19 @@ export const useFreeDraw: UseFreeDrawHook = (dimensions) => {
     const { offsetX, offsetY } = event.nativeEvent
     contextRef.current?.lineTo(offsetX, offsetY)
     contextRef.current?.stroke()
+
+    const rect = canvasRef.current?.getBoundingClientRect()
+    if (!rect) return
+
+    const path: Vector = [offsetX / rect.width, offsetY / rect.height] // returns values between 0 and 1
+
+    setPaths([...paths, path])
+  }
+
+  const undo = () => {
+    const newPaths = [...paths]
+    newPaths.pop()
+    setPaths(newPaths)
   }
 
   return {
@@ -57,5 +72,7 @@ export const useFreeDraw: UseFreeDrawHook = (dimensions) => {
     startDrawing,
     stopDrawing,
     draw,
+    paths,
+    undo,
   }
 }
